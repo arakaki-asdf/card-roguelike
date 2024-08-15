@@ -1,0 +1,34 @@
+[
+  {
+    "id": 0,
+    "name": "sword",
+    "rare": 0,
+    "type": 0,
+    "cost": 2,
+    "text": "敵に12ダメージ"
+  },
+  {
+    "id": 1,
+    "name": "defance",
+    "rare": 0,
+    "type": 1,
+    "cost": 1,
+    "text": "防御5"
+  },
+  {
+    "id": 2,
+    "name": "fist",
+    "rare": 0,
+    "type": 0,
+    "cost": 1,
+    "text": "敵に5ダメージ"
+  },
+  {
+    "id": 3,
+    "name": "slash",
+    "rare": 0,
+    "type": 0,
+    "cost": 2,
+    "text": "敵に20ダメージ"
+  }
+]

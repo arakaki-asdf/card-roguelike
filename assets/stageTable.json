@@ -1,0 +1,37 @@
+[
+  {
+    "name": "stage1",
+    "enemies": [
+      {
+       "type": 0,
+       "x": 960,
+       "y": 324,
+       "life": 10
+      },
+      {
+        "type": 0,
+        "x": 1152,
+        "y": 396,
+        "life": 12
+      }
+    ],
+    "rewardCards": [
+      1, 2, 1
+    ]
+  },
+
+  {
+    "name": "stage2",
+    "enemies": [
+      {
+        "type": 0,
+        "x": 1075,
+        "y": 360,
+        "life": 60
+      }
+    ],
+    "rewardCards": [
+      2, 1, 1
+    ]
+  }
+]
