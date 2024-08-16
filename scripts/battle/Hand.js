@@ -91,7 +91,6 @@ class Hand extends Phaser.GameObjects.GameObject {
     } else {
       this.enemyAttackIndex = 0;
       this.scene.battleManager.initialize();
-      console.log("end");
     }
   }
 

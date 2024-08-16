@@ -21,8 +21,8 @@ class BattleScene extends Phaser.Scene {
     this.load.image("circle", "assets/battle/circle.png");
 
     this.load.image("black", "assets/black.png");
-    this.load.image("player", "assets/player.png");
-    this.load.spritesheet("player2", "assets/player2.png", {
+    // this.load.image("player", "assets/player.png");
+    this.load.spritesheet("player", "assets/player.png", {
       frameWidth: 70,
       frameHeight: 70,
     });
@@ -139,7 +139,6 @@ class BattleScene extends Phaser.Scene {
       });
     });
     this.turnEndButton.on("pointerdown", () => {
-      console.log("hello world");
       this.battleManager.turnEnd();
     });
 

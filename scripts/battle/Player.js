@@ -4,7 +4,7 @@ class Player extends Phaser.GameObjects.GameObject {
     super(param.scene);
 
     this.defense = 0;
-    this.sprite = this.scene.add.sprite(150, game.config.height / 2, "player2");
+    this.sprite = this.scene.add.sprite(150, game.config.height / 2, "player");
 
     this.lifeGauge = new LifeGauge({
       scene: this.scene,
@@ -24,7 +24,7 @@ class Player extends Phaser.GameObjects.GameObject {
 
     this.scene.anims.create({
       key: "deadAnimation",
-      frames: this.scene.anims.generateFrameNumbers("player2", {
+      frames: this.scene.anims.generateFrameNumbers("player", {
         start: 0,
         end: 4,
         first: 0,

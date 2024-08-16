@@ -366,7 +366,6 @@ class Card extends Phaser.GameObjects.GameObject {
     this.costIcon.alpha = 0;
 
     let moveDuration = gameOptions.tweenSpeed * 3;
-    console.log("initializetween");
     this.scene.tweens.add({
       targets: [this.sprite, this.icon, this.text, this.costIcon],
       alpha: 1,

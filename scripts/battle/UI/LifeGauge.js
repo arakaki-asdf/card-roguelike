@@ -53,7 +53,7 @@ class LifeGauge extends Phaser.GameObjects.GameObject {
   }
   _barUpdate() {
     let percent = (this.life === 0 || this.lifeMax === 0) ? 0 : this.life / this.lifeMax;
-    console.log(`${percent}`);
+    // console.log(`${percent}`);
     this.bar.clear();
     if (percent === 0) { return; }
     this.bar.fillStyle(0xffffff, 1);
