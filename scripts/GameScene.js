@@ -11,6 +11,7 @@ class GameScene extends Phaser.Scene {
 
   // シーン読み込み Phaserライフサイクル
   preload() {
+    // this.load.image(タグ名, ファイルパス);
     this.load.image("player", "assets/player.png");
     this.load.image("enemy", "assets/enemy.png");
     this.load.image("frame", "assets/frame.png");
@@ -40,8 +41,8 @@ class GameScene extends Phaser.Scene {
       frameHeight: 40,
     });
 
-    this.load.json("cardTable", "assets/card/cardTable.json");
-    this.load.json("stageTable", "assets/stageTable.json");
+    this.load.json("cardTable", "assets/json/card.json");
+    this.load.json("stageTable", "assets/json/stage.json");
   }
 
   // シーン作成時 Phaserライフサイクル
@@ -57,7 +58,6 @@ class GameScene extends Phaser.Scene {
     this.cardTable = this.cache.json.get("cardTable");
 
 
-
     /**
      * [ {
      *  name: "",
@@ -70,6 +70,7 @@ class GameScene extends Phaser.Scene {
     this.deck.initialize();
     this.deckSetting = new DeckSetting({scene: this});
 
+    // this.add.sprite(x座標, y座標, タグ名);
     this.bookButton = this.add.sprite(game.config.width - 98 / 2 - 10, 10 + 98 / 2, "book").setScale(0.8).setInteractive();
     this.bookButton.on("pointerdown", () => {
       this.deckSetting.open();
@@ -104,6 +105,9 @@ class GameScene extends Phaser.Scene {
     let stage = this.stageTable[this.stageCount];
     this.resetStage(stage);
 
+    /**
+     * Endボタン処理
+     */
     this.turnEndButton = this.add.sprite(game.config.width - 100, game.config.height - 40, "turnEndButton").setScale(0.8).setInteractive();
     this.turnEndButton.on("pointerout", () => {
       this.tweens.add({
