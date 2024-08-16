@@ -1,6 +1,6 @@
 /**
  * 汎用ボタン
- * scaleアニメーションを行う
+ * ホバーのアニメーションを行う
  */
 class UIButton extends Phaser.GameObjects.GameObject {
     /**

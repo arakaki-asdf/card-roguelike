@@ -13,9 +13,18 @@ class BattleManager extends Phaser.GameObjects.GameObject {
 
     this.costMax = 3;
     this.pastCost = 3;
-    this.costText = this.scene.add.text(game.config.width / 10 * 0.7, game.config.height / 10 * 9, `${this.pastCost} / ${this.costMax}`, {
-      font: `36px ${gameOptions.font}`
-    }).setOrigin(0.5);
+    this.costText = this.scene.add.text(
+      Common.posX(3),
+      Common.posY(90),
+      "", {
+        font: `36px bold ${gameOptions.font}`,
+        origin: 0.5,
+    });
+    this.updateCostText();
+  }
+
+  updateCostText() {
+    this.costText.setText(`${this.pastCost} / ${this.costMax}`);
   }
 
   /**
@@ -24,7 +33,7 @@ class BattleManager extends Phaser.GameObjects.GameObject {
    */
   useCost(cost, cards) {
     this.pastCost -= cost;
-    this.costText.setText(`${this.pastCost}  / ${this.costMax}`);
+    this.updateCostText();
     for (let i = 0; i < cards.length; ++i) {
       if (cards[i].info.cost > this.pastCost) {
         cards[i].sprite.off("pointerdown");
@@ -41,7 +50,7 @@ class BattleManager extends Phaser.GameObjects.GameObject {
    */
   initialize() {
     this.pastCost = this.costMax;
-    this.costText.setText(`${this.pastCost}  / ${this.costMax}`);
+    this.updateCostText();
     this.shuffleCards = this._deckShuffle();
     this.hand.turnInitialize(this.pullCards());
 
@@ -97,7 +106,7 @@ class BattleManager extends Phaser.GameObjects.GameObject {
   reset() {
     this.hand.reset();
     this.pastCost = this.costMax;
-    this.costText.setText(`${this.pastCost}  / ${this.costMax}`);
+    this.updateCostText();
   }
 }
 
