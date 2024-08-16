@@ -14,7 +14,7 @@ class BattleManager extends Phaser.GameObjects.GameObject {
     this.costMax = 3;
     this.pastCost = 3;
     this.costText = this.scene.add.text(game.config.width / 10 * 0.7, game.config.height / 10 * 9, `${this.pastCost} / ${this.costMax}`, {
-      font: "36px monospace"
+      font: `36px ${gameOptions.font}`
     }).setOrigin(0.5);
   }
 
@@ -40,13 +40,6 @@ class BattleManager extends Phaser.GameObjects.GameObject {
    * デッキから特定の枚数引く
    */
   initialize() {
-    // if (this.scene.player.lifeGauge.isDead()) {
-    //   this.testText = this.scene.add.text(game.config.width / 2, game.config.height / 2, "END", {
-    //     font: "bold 64px monospace"
-    //   }).setOrigin(0.5);
-    //   this.scene.scene.pause();
-    //   return;
-    // }
     this.pastCost = this.costMax;
     this.costText.setText(`${this.pastCost}  / ${this.costMax}`);
     this.shuffleCards = this._deckShuffle();

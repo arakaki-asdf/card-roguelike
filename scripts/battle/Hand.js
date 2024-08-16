@@ -49,7 +49,7 @@ class Hand extends Phaser.GameObjects.GameObject {
         game.config.width / 2,
         game.config.height / 2,
         "END", {
-          font: "bold 64px monospace"
+          font: `bold 64px ${gameOptions.font}`
         }).setOrigin(0.5);
       this.endText.depth = 6;
       this.endText.alpha = 0;

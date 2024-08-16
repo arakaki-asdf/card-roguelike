@@ -47,7 +47,7 @@ class Card extends Phaser.GameObjects.GameObject {
     this.sprite = this.scene.add.sprite(x, y, "card_background", info.rare);
     this.icon = this.scene.add.sprite(x, y, "card_icon", info.id);
     this.text = this.scene.add.text(x, y + 80, `${info.text}`, {
-      font: 'bold 16px Arial',
+      font: `bold 16px ${gameOptions.font}`,
       align: 'center',
       fill: "#000000",
     }).setOrigin(0.5);

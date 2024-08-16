@@ -8,7 +8,11 @@ class TextEffect extends Phaser.GameObjects.GameObject {
   }
 
   play(x, y, score, color) {
-    var effectText = this.scene.add.text(x, y, `${score}`, { align: 'center', fill: color, fontSize: '48px', fontStyle: 'bold' }).setOrigin(0.5);
+    var effectText = this.scene.add.text(x, y, `${score}`, {
+      align: 'center',
+      fill: color,
+      font: `bold 48px ${gameOptions.font}`
+    }).setOrigin(0.5);
     effectText.setShadow(-1, 1, 'rgba(255, 255, 255, 0.3)', 1);
     effectText.depth = 1;
     this.effectGroup.add(effectText);
