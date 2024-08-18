@@ -9,9 +9,12 @@ class Enemy extends Phaser.GameObjects.GameObject {
 
     this.attackIcon = this.scene.add.sprite(param.x, param.y - this.sprite.height * 0.01 * 50, "atk").setScale(0.8);
     this.attackIcon.setScale(0.8 * -1, 0.8);
-    this.attackText = this.scene.add.text(this.attackIcon.x + this.attackIcon.width / 2 - 45, this.attackIcon.y + 3, "10", {
+    this.attackText = this.scene.add.text(
+      this.attackIcon.x + this.attackIcon.width / 2 - 45,
+      this.attackIcon.y + 3, "10", {
+      fontFamily: gameOptions.font,
+      fontSize: 16,
       fill: "#ffff00",
-      font: `bold 16px ${gameOptions.font}`
     });
 
     this.lifeGauge = new LifeGauge({

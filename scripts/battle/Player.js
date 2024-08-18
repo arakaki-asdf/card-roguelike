@@ -49,10 +49,14 @@ class Player extends Phaser.GameObjects.GameObject {
   createDef() {
     this.def = 0;
     this.defIcon = this.scene.add.sprite(this.sprite.x - 40,  this.sprite.y + this.sprite.height / 2 + 50, "def").setScale(0.5);
-    this.defText = this.scene.add.text(this.defIcon.x + this.defIcon.width / 2 - 18, this.defIcon.y + 3, "10", {
-      fill: "#ffff00",
-      font: `bold 16px ${gameOptions.font}`
-    });
+    this.defText = this.scene.add.text(
+      this.defIcon.x + this.defIcon.width / 2 - 18,
+      this.defIcon.y + 3,
+      "10",
+      {
+        fill: "#ffff00",
+        font: `bold 16px ${gameOptions.font}`
+      });
     this.defText.depth = 3;
     this.defText.setShadow(-1, 1, 'rgba(0, 0, 0, 0.7)', 5);
 
