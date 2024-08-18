@@ -3,11 +3,12 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <link rel="preload" href="./assets/font/noto_sans_jp.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     @font-face {
       font-family: "Noto Sans JP";
       src: url("./assets/font/noto_sans_jp.woff2");
+      font-weight: 400;
+      font-weight: normal;
     }
   </style>
 
@@ -38,6 +39,8 @@
   <script src="./scripts/battle/card-select/CardSelectManager.js"></script>
 </head>
 <body>
+  <!-- https://stackoverflow.com/questions/51217147/how-to-use-a-local-font-in-phaser-3 -->
+  <div style="font-family:Noto Sans JP; position:absolute; font-size: 40px;">あらかきはやてです</div>
   <script src="main.js"></script>
 </body>
 </html>
