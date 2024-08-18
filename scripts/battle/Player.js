@@ -55,7 +55,8 @@ class Player extends Phaser.GameObjects.GameObject {
       "10",
       {
         fill: "#ffff00",
-        font: `bold 16px ${gameOptions.font}`
+        font: `bold 16px ${gameOptions.font}`,
+        origin: 0.5,
       });
     this.defText.depth = 3;
     this.defText.setShadow(-1, 1, 'rgba(0, 0, 0, 0.7)', 5);
