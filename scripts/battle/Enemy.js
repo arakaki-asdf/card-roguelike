@@ -14,7 +14,6 @@ class Enemy extends Phaser.GameObjects.GameObject {
       this.attackIcon.y + 3,
       "10",
       {
-        align: 'center',
         fill: "#ffff00",
         font: `bold 16px ${gameOptions.font}`
       }).setOrigin(0.5);
