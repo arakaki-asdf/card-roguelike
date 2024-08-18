@@ -27,7 +27,7 @@ class CustomText extends Phaser.GameObjects.GameObject {
 
         this.text = this.scene.make.text({
             x: param.x,
-            y: param.y - (param.fontSize * 1.8),
+            y: param.y - (param.fontSize * 1.6),
             text: param.text,
             origin: param.origin,
             style: {
