@@ -24,6 +24,7 @@ class CustomText extends Phaser.GameObjects.GameObject {
         param.text ??= "";
         param.origin ??= 0.5;
         const bold = param.bold === undefined ? "" : "bold";
+        this.fontSize = param.fontSize;
 
         this.text = this.scene.make.text({
             x: param.x,
@@ -40,5 +41,18 @@ class CustomText extends Phaser.GameObjects.GameObject {
     destroy() {
         super.destroy();
         this.text.destroy();
+    }
+
+    setPositionX(x) {
+        this.text.x = x;
+    }
+
+    setPositionY(y) {
+        this.text.y = y - ((this.fontSize - 1) * 2);
+    }
+
+    getCalcPositionY(y) {
+        y ??= this.text.y;
+        return y - ((this.fontSize - 1) * 2);
     }
 }

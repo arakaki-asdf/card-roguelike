@@ -24,7 +24,7 @@ class Card extends Phaser.GameObjects.GameObject {
   destroy() {
     this.sprite.destroy();
     this.icon.destroy();
-    this.text.destroy();
+    this.customText.destroy();
     this.costIcon.destroy();
     super.destroy();
   }
@@ -46,11 +46,15 @@ class Card extends Phaser.GameObjects.GameObject {
   createCard(x, y, info) {
     this.sprite = this.scene.add.sprite(x, y, "card_background", info.rare);
     this.icon = this.scene.add.sprite(x, y, "card_icon", info.id);
-    this.text = this.scene.add.text(x, y + 80, `${info.text}`, {
-      font: `bold 16px ${gameOptions.font}`,
-      align: 'center',
-      fill: "#000000",
-    }).setOrigin(0.5);
+    this.customText = new CustomText({
+      scene: this.scene,
+      x: x,
+      y: y + 80,
+      text: info.text,
+      bold: true,
+      fontSize: 16,
+      fill: "#000000"
+    })
     this.costIcon = this.scene.add.sprite(x, y, "card_cost", info.cost);
 
     this.sprite.setInteractive();
@@ -60,8 +64,8 @@ class Card extends Phaser.GameObjects.GameObject {
     this.icon.depth = 2;
     this.icon.setScale(this.defaultScale);
 
-    this.text.depth = 2;
-    this.text.setScale(this.defaultScale);
+    this.customText.text.depth = 2;
+    this.customText.text.setScale(this.defaultScale);
 
     this.costIcon.depth = 2;
     this.costIcon.setScale(this.defaultScale);
@@ -73,13 +77,13 @@ class Card extends Phaser.GameObjects.GameObject {
   setAlpha(alpha) {
     this.sprite.alpha = alpha;
     this.icon.alpha = alpha;
-    this.text.alpha = alpha;
+    this.customText.text.alpha = alpha;
     this.costIcon.alpha = alpha;
   }
   setDepth(depth) {
     this.sprite.depth = depth;
     this.icon.depth = depth;
-    this.text.depth = depth;
+    this.customText.text.depth = depth;
     this.costIcon.depth = depth;
   }
   setScale(scale) {
@@ -89,7 +93,7 @@ class Card extends Phaser.GameObjects.GameObject {
   disable() {
     this.sprite.visible = false;
     this.icon.visible = false;
-    this.text.visible = false;
+    this.customText.text.visible = false;
     this.costIcon.visible = false;
   }
   enable() {
@@ -97,8 +101,8 @@ class Card extends Phaser.GameObjects.GameObject {
     this.sprite.setScale(this.defaultScale);
     this.icon.visible = true;
     this.icon.setScale(this.defaultScale);
-    this.text.visible = true;
-    this.text.setScale(this.defaultScale);
+    this.customText.text.visible = true;
+    this.customText.text.setScale(this.defaultScale);
     this.costIcon.visible = true;
     this.costIcon.setScale(this.defaultScale);
     this.setPos(this.sprite.x, this.sprite.y);
@@ -119,9 +123,9 @@ class Card extends Phaser.GameObjects.GameObject {
     this.icon.y = this.getPercentY(0.25, y, this.sprite.scaleY);
     this.icon.setScale(this.sprite.scaleX);
 
-    this.text.x = this.getPercentX(0.5, x, this.sprite.scaleX);
-    this.text.y = this.getPercentY(0.7, y, this.sprite.scaleY);
-    this.text.setScale(this.sprite.scaleX);
+    this.customText.setPositionX(this.getPercentX(0.5, x, this.sprite.scaleX));
+    this.customText.setPositionY(this.getPercentY(0.7, y, this.sprite.scaleY));
+    this.customText.text.setScale(this.sprite.scaleX);
 
     this.costIcon.x = this.getPercentX(this.costIconPercentX, x, this.sprite.scaleX);
     this.costIcon.y = this.getPercentY(this.costIconPercentY, y, this.sprite.scaleY);
@@ -162,9 +166,9 @@ class Card extends Phaser.GameObjects.GameObject {
     // this.icon.x = pointer.x - 50;
     // this.icon.y = pointer.y;
 
-    this.text.setScale(0.5);
-    this.text.x = this.getPercentX(0.5, pointer.x, 0.5);
-    this.text.y = this.getPercentY(0.7, pointer.y, 0.5);
+    this.customText.text.setScale(0.5);
+    this.customText.text.x = this.getPercentX(0.5, pointer.x, 0.5);
+    this.customText.text.y = this.getPercentY(0.7, pointer.y, 0.5);
 
     this.costIcon.setScale(0.5);
     this.costIcon.x = this.getPercentX(this.costIconPercentX, pointer.x, 0.5);
@@ -207,10 +211,10 @@ class Card extends Phaser.GameObjects.GameObject {
     });
 
     
-    this.text.depth = 1;
-    let textY = this.getPercentY(0.7, this.defaultY, this.defaultScale);
+    this.customText.text.depth = 1;
+    let textY = this.customText.getCalcPositionY(this.getPercentY(0.7, this.defaultY, this.defaultScale));
     this.scene.tweens.add({
-      targets: [this.text],
+      targets: [this.customText.text],
       scaleX: this.defaultScale,
       scaleY: this.defaultScale,
       // y: this.defaultY + 60,
@@ -253,9 +257,9 @@ class Card extends Phaser.GameObjects.GameObject {
     });
 
     let textY = this.getPercentY(0.7, this.sprite.y - 80, 1.0);
-    this.text.depth = 3;
+    this.customText.text.depth = 3;
     this.scene.tweens.add({
-      targets: [this.text],
+      targets: [this.customText.text],
       scaleX: 1.0,
       scaleY: 1.0,
       y: textY,
@@ -303,7 +307,7 @@ class Card extends Phaser.GameObjects.GameObject {
       onComplete: () => { }
     });
     this.scene.tweens.add({
-      targets: [this.text],
+      targets: [this.customText.text],
       x: this.defaultX,
       y: this.getPercentY(0.7, this.defaultY),
       duration: gameOptions.tweenSpeed,
@@ -326,7 +330,7 @@ class Card extends Phaser.GameObjects.GameObject {
     this.sprite.off("pointerdown");
 
     this.scene.tweens.add({
-      targets: [this.sprite, this.icon, this.text, this.costIcon],
+      targets: [this.sprite, this.icon, this.customText.text, this.costIcon],
       scaleX: 0,
       scaleY: 0,
       duration: 200,
@@ -334,7 +338,7 @@ class Card extends Phaser.GameObjects.GameObject {
     });
 
     this.scene.tweens.add({
-      targets: [this.sprite, this.icon, this.text, this.costIcon],
+      targets: [this.sprite, this.icon, this.customText.text, this.costIcon],
       alpha: 0,
       duration: 150,
       onComplete: () => { 
@@ -347,9 +351,9 @@ class Card extends Phaser.GameObjects.GameObject {
         this.icon.visible = false;
         this.icon.alpha = 1;
 
-        this.text.setScale(this.defaultScale);
-        this.text.visible = false;
-        this.text.alpha = 1;
+        this.customText.text.setScale(this.defaultScale);
+        this.customText.text.visible = false;
+        this.customText.text.alpha = 1;
 
         this.costIcon.setScale(this.defaultScale);
         this.costIcon.visible = false;
@@ -362,12 +366,12 @@ class Card extends Phaser.GameObjects.GameObject {
   initializeTween(delayOffset) {
     this.sprite.alpha = 0;
     this.icon.alpha = 0;
-    this.text.alpha = 0;
+    this.customText.text.alpha = 0;
     this.costIcon.alpha = 0;
 
     let moveDuration = gameOptions.tweenSpeed * 3;
     this.scene.tweens.add({
-      targets: [this.sprite, this.icon, this.text, this.costIcon],
+      targets: [this.sprite, this.icon, this.customText.text, this.costIcon],
       alpha: 1,
       delay: delayOffset * 60,
       duration: 100,
@@ -390,12 +394,12 @@ class Card extends Phaser.GameObjects.GameObject {
       duration: moveDuration,
     });
 
-    this.text.y = this.getPercentY(0.7);
+    this.customText.setPositionY(this.getPercentY(0.7));
     this.scene.tweens.add({
-      targets: this.text,
+      targets: this.customText.text,
       x: this.defaultX,
       delay: delayOffset * 60,
-      angle: this.getAngleCenter(this.defaultX, this.text.y),
+      angle: this.getAngleCenter(this.defaultX, this.customText.text.y),
       duration: moveDuration,
     });
 
