@@ -51,8 +51,8 @@ class Player extends Phaser.GameObjects.GameObject {
     this.defIcon = this.scene.add.sprite(this.sprite.x - 40,  this.sprite.y + this.sprite.height / 2 + 50, "def").setScale(0.5);
     this.defText = new CustomText({
       scene: this.scene,
-      x: this.defIcon.x + this.defIcon.width / 2 - 10,
-      y: this.defIcon.y + 7,
+      x: this.defIcon.x + this.defIcon.width * 0.5 - 10,
+      y: this.defIcon.y + this.defIcon.width * 0.5,
       text: "10",
       bold: true,
       fill: "#ffff00",
