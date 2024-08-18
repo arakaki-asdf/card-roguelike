@@ -13,18 +13,17 @@ class BattleManager extends Phaser.GameObjects.GameObject {
 
     this.costMax = 3;
     this.pastCost = 3;
-    this.costText = this.scene.add.text(
-      Common.posX(3),
-      Common.posY(90),
-      "", {
-        font: `36px bold ${gameOptions.font}`,
-        origin: 0.5,
-    });
+    this.costText = new CustomText({
+      scene: this.scene,
+      x: Common.posX(10),
+      y: Common.posY(90),
+      fontSize: 36,
+    })
     this.updateCostText();
   }
 
   updateCostText() {
-    this.costText.setText(`${this.pastCost} / ${this.costMax}`);
+    this.costText.text.setText(`${this.pastCost} / ${this.costMax}`);
   }
 
   /**

@@ -49,21 +49,20 @@ class Player extends Phaser.GameObjects.GameObject {
   createDef() {
     this.def = 0;
     this.defIcon = this.scene.add.sprite(this.sprite.x - 40,  this.sprite.y + this.sprite.height / 2 + 50, "def").setScale(0.5);
-    this.defText = this.scene.make.text({
+    this.defText = new CustomText({
+      scene: this.scene,
       x: this.defIcon.x + this.defIcon.width / 2 - 10,
-      y: this.defIcon.y + 7 - 16 * 2,
-      origin: 0.5,
+      y: this.defIcon.y + 7,
       text: "10",
-      style: {
-        font: `bold 16px ${gameOptions.font}`,
-        fill: "#ffff00",
-      }
+      bold: true,
+      fill: "#ffff00",
+      fontSize: 16,
     });
-    this.defText.depth = 3;
-    this.defText.setShadow(-1, 1, 'rgba(0, 0, 0, 0.7)', 5);
+    this.defText.text.depth = 3;
+    this.defText.text.setShadow(-1, 1, 'rgba(0, 0, 0, 0.7)', 5);
 
     this.defIcon.visible = false;
-    this.defText.visible = false;
+    this.defText.text.visible = false;
   }
 
   takenDamage(damage) {
@@ -79,7 +78,7 @@ class Player extends Phaser.GameObjects.GameObject {
     } else if (diff > 0) {
       this.scene.defenceEffect.play(pos.x, pos.y, this.sprite.depth + 1);
       this.def = diff;
-      this.defText.setText(`${diff}`);
+      this.defText.text.setText(`${diff}`);
     } else {
       // if (this.def > 0) { 
         // this.scene.defenceEffect.playCracked(pos.x, pos.y, this.sprite.depth + 1);
@@ -102,15 +101,15 @@ class Player extends Phaser.GameObjects.GameObject {
   addDef(def) {
     this.def += def;
     this.defIcon.visible = true;
-    this.defText.visible = true;
-    this.defText.setText(`${this.def}`);
+    this.defText.text.visible = true;
+    this.defText.text.setText(`${this.def}`);
     return 0;
   }
 
   resetDef() {
     this.def = 0;
     this.defIcon.visible = false;
-    this.defText.visible = false;
+    this.defText.text.visible = false;
   }
 
   hasDef() {

@@ -30,24 +30,22 @@ class LifeGauge extends Phaser.GameObjects.GameObject {
     this.box.fillStyle(0x42629b, 0.8);
     this.box.fillRect(this.barX, this.barY, this.barWidth, this.barHeight);
 
-    this.text = this.scene.make.text({
+    this.customText = new CustomText({
+      scene: this.scene,
       x: this.barX + this.barWidth * 0.5,
-      y: this.barY + this.barHeight * 0.5 - (12 * 2),
+      y: this.barY + this.barHeight * 0.5,
       text: `${this.life} / ${this.lifeMax}`,
-      origin: 0.5,
-      style: {
-        font: `bold 12px ${gameOptions.font}`,
-        fill: '#000000',
-      },
+      fill: "#000000",
+      bold: true,
+      fontSize: 12,
     });
-
     this.addLife(0);
   }
 
   destroy() {
     this.box.destroy();
     this.bar.destroy();
-    this.text.destroy();
+    this.customText.destroy();
   }
 
   invisible() {
@@ -61,7 +59,7 @@ class LifeGauge extends Phaser.GameObjects.GameObject {
   }
 
   updateText() {
-    this.text.setText(`${this.life} / ${this.lifeMax}`);
+    this.customText.text.setText(`${this.life} / ${this.lifeMax}`);
   }
 
   updateBar() {

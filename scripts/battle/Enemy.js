@@ -9,14 +9,15 @@ class Enemy extends Phaser.GameObjects.GameObject {
 
     this.attackIcon = this.scene.add.sprite(param.x, param.y - this.sprite.height * 0.01 * 50, "atk").setScale(0.8);
     this.attackIcon.setScale(0.8 * -1, 0.8);
-    this.attackText = this.scene.add.text(
-      this.attackIcon.x + this.attackIcon.width / 2 - 45,
-      this.attackIcon.y + 3,
-      "10",
-      {
-        fill: "#ffff00",
-        font: `bold 16px ${gameOptions.font}`
-      }).setOrigin(0.5);
+    this.attackText = new CustomText({
+      scene: this.scene,
+      x: this.attackIcon.x + this.attackIcon.width / 2 - 45,
+      y: this.attackIcon.y + 3,
+      text: "10",
+      bold: true,
+      fill: "#ffff00",
+      fontSize: 16,
+    });
 
     this.lifeGauge = new LifeGauge({
       scene: this.scene, 
@@ -41,14 +42,14 @@ class Enemy extends Phaser.GameObjects.GameObject {
     let ary = [8, 9, 10, 10, 15];
     let random = Phaser.Math.Between(0, 4);
     let damage = ary[random];
-    this.attackText.setText(`${damage}`);
+    this.attackText.text.setText(`${damage}`);
 
     this.actionFunc = (onComplete) => {
       this.attackTween(damage, onComplete);
     };
 
     this.scene.tweens.add({
-      targets: [this.attackIcon, this.attackText],
+      targets: [this.attackIcon, this.attackText.text],
       alpha: 1,
       duration: gameOptions.tweenSpeed * 3,
     });
@@ -69,7 +70,7 @@ class Enemy extends Phaser.GameObjects.GameObject {
    */
   tweenDead(onComplete = () => { }) {
     this.scene.tweens.add({
-      targets: [this.sprite, this.lifeGauge, this.attackIcon, this.attackText],
+      targets: [this.sprite, this.lifeGauge, this.attackIcon, this.attackText.text],
       alpha: 0,
       duration: gameOptions.tweenSpeed,
       onComplete: () => {
@@ -113,7 +114,7 @@ class Enemy extends Phaser.GameObjects.GameObject {
                 this.scene.player.takenDamage(damage);
 
                 this.scene.tweens.add({
-                  targets: [this.attackIcon, this.attackText],
+                  targets: [this.attackIcon, this.attackText.text],
                   alpha: 0,
                   duration: gameOptions.tweenSpeed,
                 });

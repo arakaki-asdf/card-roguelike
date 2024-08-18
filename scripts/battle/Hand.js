@@ -45,24 +45,26 @@ class Hand extends Phaser.GameObjects.GameObject {
       this.black.alpha = 0.01;
 
       // END文字
-      this.endText = this.scene.add.text(
-        game.config.width / 2,
-        game.config.height / 2,
-        "END", {
-          font: `bold 64px ${gameOptions.font}`
-        }).setOrigin(0.5);
-      this.endText.depth = 6;
-      this.endText.alpha = 0;
+      this.endText = new CustomText({
+        scene: this.scene,
+        x: Common.posX(50),
+        y: Common.posY(50),
+        text: "END",
+        bold: true,
+        fontSize: 64,
+      });
+      this.endText.text.depth = 6;
+      this.endText.text.alpha = 0;
 
       this.scene.player.onDead(() => {
             this.scene.tweens.add({
-              targets: [this.endText],
+              targets: [this.endText.text],
               alpha: 1,
               duration: gameOptions.tweenSpeed * 2,
               onComplete: () => {
                 this.scene.time.delayedCall(500, () => {
                   this.scene.tweens.add({
-                    targets: [this.endText],
+                    targets: [this.endText.text],
                     alpha: 0,
                     duration: 500,
                   });
