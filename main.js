@@ -2,7 +2,7 @@
 // ゲームの全体設定 (jsonとかでも良さそう)
 const gameOptions = {
   tweenSpeed: 75,
-  font: "Noto Sans JP",
+  font: "",
 };
 
 // ゲーム用汎用処理
