@@ -15,7 +15,7 @@ class DeckSetting extends Phaser.GameObjects.GameObject {
     this.touchObject.depth = this.defaultDepth + 1;
 
     this.cardList = [];
-    this.closeButton = this.scene.add.sprite(game.config.width - 98 / 2 - 10, 10 + 98 / 2, "xButton")
+    this.closeButton = this.scene.add.sprite(game.config.width - 98 / 2 - 10, 10 + 98 / 2, "crossButton")
       .setScale(0.8)
       .setInteractive();
     this.closeButton.depth = this.defaultDepth + 1;

@@ -15,14 +15,13 @@ class BattleScene extends Phaser.Scene {
     this.load.image("enemy", "assets/battle/enemy.png");
     this.load.image("target", "assets/battle/target.png");
     this.load.image("endButton", "assets/battle/endButton.png");
-    this.load.image("xButton", "assets/battle/deck/xButton.png");
+    this.load.image("crossButton", "assets/battle/deck/crossButton.png");
     this.load.image("book", "assets/battle/deck/book.png");
     this.load.image('red', 'assets/battle/red.png');
     this.load.image("circle", "assets/battle/circle.png");
 
     this.load.image("black", "assets/black.png");
-    // this.load.image("player", "assets/player.png");
-    this.load.spritesheet("player", "assets/player.png", {
+    this.load.spritesheet("player", "assets/player350x70.png", {
       frameWidth: 70,
       frameHeight: 70,
     });
@@ -36,15 +35,15 @@ class BattleScene extends Phaser.Scene {
     this.load.image("okButton", "assets/battle/card-select/okButton.png");
 
     // 画像を効率よく
-    this.load.spritesheet("card_background", "assets/card/card_background_180x320.png", {
+    this.load.spritesheet("card_background", "assets/card/cardBackground180x320.png", {
       frameWidth: 180,
       frameHeight: 320,
     });
-    this.load.spritesheet("card_icon", "assets/card/card_icon_140x120.png", {
+    this.load.spritesheet("card_icon", "assets/card/cardIcon140x120.png", {
       frameWidth: 140,
       frameHeight: 120,
     });
-    this.load.spritesheet("card_cost", "assets/card/card_cost_40x40.png", {
+    this.load.spritesheet("card_cost", "assets/card/cardCost40x40.png", {
       frameWidth: 40,
       frameHeight: 40,
     });

@@ -11,7 +11,7 @@ class TitleScene extends Phaser.Scene {
     this.load.image("titleBG", "assets/title/bg.png");
     this.load.image("startButton", "assets/title/startButton.png");
     this.load.image("title", "assets/title/title.png");
-    this.load.spritesheet("player", "assets/player_title_animation.png", {
+    this.load.spritesheet("player", "assets/player700x70.png", {
       frameWidth: 70,
       frameHeight: 70,
     });
