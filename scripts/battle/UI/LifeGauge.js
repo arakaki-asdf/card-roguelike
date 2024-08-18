@@ -35,11 +35,11 @@ class LifeGauge extends Phaser.GameObjects.GameObject {
       y: this.barY + this.barHeight * 0.5,
       text: `${this.life} / ${this.lifeMax}`,
       style: {
-        font: 'bold 12px Arial',
+        align: 'center',
+        font: `bold 12px ${gameOptions.font}`,
         fill: '#000000',
       },
-      origin: 0.5,
-    });
+    }).setOrigin(0.5);
 
     this.addLife(0);
   }
